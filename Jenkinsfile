@@ -9,7 +9,7 @@ node {
 
     stage('Build image') {
   
-       app = docker.build("srikanta1219/myargocd")
+       app = docker.build("srikanta1219/shanvi")
     }
 
     stage('Test image') {
@@ -28,7 +28,7 @@ node {
     }
     
     stage('Trigger ManifestUpdate') {
-                echo "triggering updatemanifestjob"
-                build job: 'updatemanifest', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
+                echo "triggering Updatemanifest Job"
+                build job: 'update-k8s-manifest', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
         }
 }
